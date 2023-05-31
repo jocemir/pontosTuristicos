@@ -93,14 +93,47 @@ class _DetalhesPontosPageState extends State<DetalhesPontosPage> {
   size: 20,
   ),
   label: const Text('Mapa externo'),
-  onPressed: _abrirCoordenadasMapaExterno,
-  ),
-  const Divider(color: Colors.grey),
-  ],
+    onPressed: _abrirCoordenadasMapaExterno,
   )
-
-
   ],
+  ),
+        Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton.icon(
+                  icon: const Icon(
+                    Icons.route,
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                  label: const Text('Calculo da distância'),
+                  onPressed: _calcularDistancia,
+                )
+              ],
+            ),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(),
+                borderRadius: BorderRadius.circular(8), // Define um raio de borda para deixar os cantos arredondados
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(8),
+                child: Text(
+                  ' ${_localizacaoAtual == null ? "0" : _distancia}',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            )
+
+          ],
+        )
+
+      ],
     ),
   );
 
@@ -108,6 +141,7 @@ class _DetalhesPontosPageState extends State<DetalhesPontosPage> {
     _obterLocalizacaoAtual();
 
   }
+
 
   void _obterLocalizacaoAtual() async{
     bool servicoHabilitado = await _servicoHabilitado();

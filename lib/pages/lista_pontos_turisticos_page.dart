@@ -169,10 +169,7 @@ class _ListaPontosTuristicosPageState extends State<ListaPontosTuristicosPage>{
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // Image.asset(
-                    //   'assets/images/img.jpg',
-                    //   fit: BoxFit.fill,
-                    // ),
+
                     PopupMenuButton(
                         child: ListTile(
                           title: Text('${ponto.id} - ${ponto.nome}'),
