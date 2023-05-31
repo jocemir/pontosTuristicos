@@ -121,7 +121,7 @@ class _DetalhesPontosPageState extends State<DetalhesPontosPage> {
               child: Padding(
                 padding: EdgeInsets.all(8),
                 child: Text(
-                  ' ${_localizacaoAtual == null ? "0" : _distancia}',
+                  ' ${_localizacaoAtual == null ? "--" : _distancia}',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
