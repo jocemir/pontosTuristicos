@@ -129,6 +129,7 @@ class _ListaPontosTuristicosPageState extends State<ListaPontosTuristicosPage>{
         _atualizarLista();
         _localizacaoAtual == null;
       }
+
     });
   }
 
