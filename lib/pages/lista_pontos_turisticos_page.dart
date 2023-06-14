@@ -44,7 +44,7 @@ class _ListaPontosTuristicosPageState extends State<ListaPontosTuristicosPage>{
         children: [
           FloatingActionButton.extended(
             onPressed: _abrirForm,
-            label:Text('Novo ponto turístico'),
+            label:Text('Novo'),
             icon: Icon(Icons.add),
           ),
 
