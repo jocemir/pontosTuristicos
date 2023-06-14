@@ -77,7 +77,7 @@ class _CepFragmentState extends State<CepFragment>{
     }catch(e){
       debugPrint(e.toString());
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Ocorreu um erro, tente noavamente! \n'
+          content: Text('Ocorreu um erro, tente novamente! \n'
               'ERRO: ${e.toString()}')
       ));
     }

@@ -9,6 +9,7 @@ class PontosTuristicos{
   static const CAMPO_INCLUSAO = 'inclusao';
   static const CAMPO_LATITUDE = 'latitude';
   static const CAMPO_LONGITUDE = 'longitude';
+  static const CAMPO_CEP = 'cep';
 
   int id;
   String nome;
@@ -18,6 +19,7 @@ class PontosTuristicos{
   bool finalizada;
   String latitude;
   String longitude;
+  String cep;
 
   PontosTuristicos({
     required this.id,
@@ -27,7 +29,8 @@ class PontosTuristicos{
     this.dataInclusao,
     this.finalizada = false,
     required this.latitude,
-    required this.longitude
+    required this.longitude,
+    required this.cep
   });
 
   String get prazoFormatado{
@@ -45,7 +48,8 @@ class PontosTuristicos{
     CAMPO_INCLUSAO:
     dataInclusao == null ? null : DateFormat("yyyy-MM-dd").format(dataInclusao!),
     CAMPO_LATITUDE: latitude,
-    CAMPO_LONGITUDE: longitude
+    CAMPO_LONGITUDE: longitude,
+    CAMPO_CEP: cep
 
   };
 
@@ -58,7 +62,8 @@ class PontosTuristicos{
         ? DateFormat("yyyy-MM-dd").parse(map[CAMPO_INCLUSAO])
         : null,
     latitude: map[CAMPO_LATITUDE] is String ? map[CAMPO_LATITUDE] : '',
-    longitude: map[CAMPO_LONGITUDE] is String ? map[CAMPO_LONGITUDE] : ''
+    longitude: map[CAMPO_LONGITUDE] is String ? map[CAMPO_LONGITUDE] : '',
+    cep: map[CAMPO_CEP] is String ? map[CAMPO_CEP] : ''
   );
 
 }

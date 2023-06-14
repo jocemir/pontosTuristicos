@@ -28,128 +28,133 @@ class _DetalhesPontosPageState extends State<DetalhesPontosPage> {
   }
 
   Widget _criarBody() => Padding(
-    padding: EdgeInsets.all(10),
-    child: Column(
-      children: [
-        Row(
-          children: [
-            Campo(descricao: 'Código: '),
-            Valor(valor: '${widget.pontos.id}'),
-          ],
-        ),
-        Row(
-          children: [
-            Campo(descricao: 'Nome: '),
-            Valor(valor: widget.pontos.nome),
-          ],
-        ),
-        Row(
-          children: [
-            Campo(descricao: 'Descrição: '),
-            Valor(valor: widget.pontos.descricao),
-          ],
-        ),
-        Row(
-          children: [
-            Campo(descricao: 'Diferenciais: '),
-            Valor(valor: widget.pontos.diferenciais),
-          ],
-        ),
-        Row(
-          children: [
-            Campo(descricao: 'Data de Inclusão: '),
-            Valor(valor: widget.pontos.prazoFormatado),
-          ],
-        ),
-        Row(
-          children: [
-            Campo(descricao: 'Latitude: '),
-            Valor(valor: widget.pontos.latitude),
-          ],
-        ),
-        Row(
-          children: [
-            Campo(descricao: 'Longitude: '),
-            Valor(valor: widget.pontos.longitude),
-          ],
-        ),
-  Column(
-  mainAxisAlignment: MainAxisAlignment.center,
-  children: [
-  ElevatedButton.icon(
-  icon: const Icon(
-  Icons.map,
-  color: Colors.white,
-  size: 20,
-  ),
-  label: const Text('Mapa interno'),
-  onPressed: _abrirCoordenadasMapaInterno,
-  ),
-  const SizedBox(height: 10),
-  ElevatedButton.icon(
-  icon: const Icon(
-  Icons.map_outlined,
-  color: Colors.white,
-  size: 20,
-  ),
-  label: const Text('Mapa externo'),
-    onPressed: _abrirCoordenadasMapaExterno,
-  )
-  ],
-  ),
-        Column(
+        padding: EdgeInsets.all(10),
+        child: Column(
           children: [
             Row(
+              children: [
+                Campo(descricao: 'Código: '),
+                Valor(valor: '${widget.pontos.id}'),
+              ],
+            ),
+            Row(
+              children: [
+                Campo(descricao: 'Nome: '),
+                Valor(valor: widget.pontos.nome),
+              ],
+            ),
+            Row(
+              children: [
+                Campo(descricao: 'Descrição: '),
+                Valor(valor: widget.pontos.descricao),
+              ],
+            ),
+            Row(
+              children: [
+                Campo(descricao: 'Diferenciais: '),
+                Valor(valor: widget.pontos.diferenciais),
+              ],
+            ),
+            Row(
+              children: [
+                Campo(descricao: 'Data de Inclusão: '),
+                Valor(valor: widget.pontos.prazoFormatado),
+              ],
+            ),
+            Row(
+              children: [
+                Campo(descricao: 'Latitude: '),
+                Valor(valor: widget.pontos.latitude),
+              ],
+            ),
+            Row(
+              children: [
+                Campo(descricao: 'Longitude: '),
+                Valor(valor: widget.pontos.longitude),
+              ],
+            ),
+            Row(
+              children: [
+                Campo(descricao: 'Cep: '),
+                Valor(valor: widget.pontos.cep),
+              ],
+            ),
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton.icon(
                   icon: const Icon(
-                    Icons.route,
+                    Icons.map,
                     color: Colors.white,
                     size: 20,
                   ),
-                  label: const Text('Calculo da distância'),
-                  onPressed: _calcularDistancia,
+                  label: const Text('Mapa interno'),
+                  onPressed: _abrirCoordenadasMapaInterno,
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton.icon(
+                  icon: const Icon(
+                    Icons.map_outlined,
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                  label: const Text('Mapa externo'),
+                  onPressed: _abrirCoordenadasMapaExterno,
                 )
               ],
             ),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(),
-                borderRadius: BorderRadius.circular(8), // Define um raio de borda para deixar os cantos arredondados
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(8),
-                child: Text(
-                  ' ${_localizacaoAtual == null ? "--" : _distancia}',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton.icon(
+                      icon: const Icon(
+                        Icons.route,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                      label: const Text('Calculo da distância'),
+                      onPressed: _calcularDistancia,
+                    )
+                  ],
                 ),
-              ),
-            )
 
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(),
+                    borderRadius: BorderRadius.circular(
+                        8), // Define um raio de borda para deixar os cantos arredondados
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Text(
+                      ' ${_localizacaoAtual == null ? "--" : _distancia}',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ],
-        )
+        ),
 
-      ],
-    ),
-  );
+      );
 
-  void _calcularDistancia(){
+  void _calcularDistancia() {
     _obterLocalizacaoAtual();
-
   }
 
-
-  void _obterLocalizacaoAtual() async{
+  void _obterLocalizacaoAtual() async {
     bool servicoHabilitado = await _servicoHabilitado();
-    if(!servicoHabilitado){
+    if (!servicoHabilitado) {
       return;
     }
     bool permissoesPermitidas = await _verificaPermissoes();
-    if(!permissoesPermitidas){
+    if (!permissoesPermitidas) {
       return;
     }
     Position posicao = await Geolocator.getCurrentPosition();
@@ -160,10 +165,10 @@ class _DetalhesPontosPageState extends State<DetalhesPontosPage> {
           posicao!.longitude,
           double.parse(widget.pontos.latitude),
           double.parse(widget.pontos.longitude));
-      if(_distancia > 1000){
-        var _distanciaKM = _distancia/1000;
+      if (_distancia > 1000) {
+        var _distanciaKM = _distancia / 1000;
         _distancia = "${double.parse((_distanciaKM).toStringAsFixed(2))}KM";
-      }else{
+      } else {
         _distancia = "${_distancia.toStringAsFixed(2)}M";
       }
     });
@@ -173,14 +178,12 @@ class _DetalhesPontosPageState extends State<DetalhesPontosPage> {
     bool servicoHabilitado = await Geolocator.isLocationServiceEnabled();
     if (!servicoHabilitado) {
       await _mostrarMensagemDialog(
-          'Para utilizar este recurso, é necessário acessar as configurações e permitir a utilização do serviço de localização.'
-      );
+          'Para utilizar este recurso, é necessário acessar as configurações e permitir a utilização do serviço de localização.');
       Geolocator.openAppSettings();
       return false;
     }
     return true;
   }
-
 
   Future<bool> _verificaPermissoes() async {
     LocationPermission permissao = await Geolocator.checkPermission();
@@ -193,21 +196,16 @@ class _DetalhesPontosPageState extends State<DetalhesPontosPage> {
     }
     if (permissao == LocationPermission.deniedForever) {
       await _mostrarMensagemDialog(
-          'Para utilizar este recurso, é necessário acessar as configurações e permitir a utilização do serviço de localização.'
-      );
+          'Para utilizar este recurso, é necessário acessar as configurações e permitir a utilização do serviço de localização.');
       Geolocator.openAppSettings();
       return false;
     }
     return true;
   }
 
-
-  void _mostrarMensagem(String mensagem){
-    ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text(mensagem)
-        )
-    );
+  void _mostrarMensagem(String mensagem) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(mensagem)));
   }
 
   Future<void> _mostrarMensagemDialog(String mensagem) async {
@@ -230,30 +228,26 @@ class _DetalhesPontosPageState extends State<DetalhesPontosPage> {
     );
   }
 
-
-  void _abrirCoordenadasMapaInterno(){
-    if(widget.pontos.longitude == '' || widget.pontos.latitude == ''){
+  void _abrirCoordenadasMapaInterno() {
+    if (widget.pontos.longitude == '' || widget.pontos.latitude == '') {
       return;
     }
-    Navigator.push(context,
-        MaterialPageRoute(builder: (BuildContext context) => MapaInternoPage(
-            latitue: double.parse(widget.pontos.latitude),
-            longitude: double.parse(widget.pontos.longitude)))
-    );
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) => MapaInternoPage(
+                latitue: double.parse(widget.pontos.latitude),
+                longitude: double.parse(widget.pontos.longitude))));
   }
 
-  void _abrirCoordenadasMapaExterno(){
-    if(widget.pontos.longitude == '' || widget.pontos.latitude == ''){
+  void _abrirCoordenadasMapaExterno() {
+    if (widget.pontos.longitude == '' || widget.pontos.latitude == '') {
       return;
     }
-    MapsLauncher.launchCoordinates(
-        double.parse(widget.pontos.latitude),
-        double.parse(widget.pontos.longitude)
-    );
+    MapsLauncher.launchCoordinates(double.parse(widget.pontos.latitude),
+        double.parse(widget.pontos.longitude));
   }
-
 }
-
 
 class Campo extends StatelessWidget {
   final String descricao;
@@ -263,13 +257,9 @@ class Campo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.only(right: 10, top: 5, bottom: 5),
-        child: Text(
-            descricao,
-            style: TextStyle(fontWeight: FontWeight.bold)
-        ),
+      padding: EdgeInsets.only(right: 10, top: 5, bottom: 5),
+      child: Text(descricao, style: TextStyle(fontWeight: FontWeight.bold)),
     );
-
   }
 }
 

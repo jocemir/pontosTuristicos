@@ -4,7 +4,7 @@ import 'package:sqflite/sqlite_api.dart';
 import '../model/pontos_turisticos.dart';
 
 class DatabaseProvider {
-  static const _dbName = 'cadastro_tarefas.db';
+  static const _dbName = 'cadastro_tarefasV1.db';
   static const _dbVersion = 1;
 
   DatabaseProvider._init();
@@ -35,7 +35,8 @@ class DatabaseProvider {
         ${PontosTuristicos.CAMPO_DIFERENCIAIS} TEXT,
         ${PontosTuristicos.CAMPO_INCLUSAO} TEXT,
         ${PontosTuristicos.CAMPO_LATITUDE} TEXT,
-        ${PontosTuristicos.CAMPO_LONGITUDE} TEXT
+        ${PontosTuristicos.CAMPO_LONGITUDE} TEXT,
+        ${PontosTuristicos.CAMPO_CEP} TEXT
       );
     ''');
   }

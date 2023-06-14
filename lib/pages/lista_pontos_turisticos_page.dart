@@ -39,11 +39,17 @@ class _ListaPontosTuristicosPageState extends State<ListaPontosTuristicosPage>{
     return Scaffold(
       appBar: _criarAppBar(),
       body: _criarBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _abrirForm,
-        tooltip: 'Novo ponto turístico',
-        child: Icon(Icons.add),
-      ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton.extended(
+            onPressed: _abrirForm,
+            label:Text('Novo ponto turístico'),
+            icon: Icon(Icons.add),
+          ),
+
+        ],
+      )
     );
   }
 
@@ -86,6 +92,7 @@ class _ListaPontosTuristicosPageState extends State<ListaPontosTuristicosPage>{
                         onPressed: _obterLocalizacaoAtual,
                         child: Text('Obter localização'),
                       ),
+
                       TextButton(
                         onPressed: () {
                           _salvar(key);

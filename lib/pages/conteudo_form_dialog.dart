@@ -19,6 +19,7 @@ class ConteudoFormDialogState extends State<ConteudoFormDialog>{
   final nomeController = TextEditingController();
   final inclusaoController = TextEditingController();
   final diferenciaisController = TextEditingController();
+  final cepController = TextEditingController();
   final _dateFormat = DateFormat('dd/MM/yyyy');
   Position? localizacaoAtual;
 
@@ -29,6 +30,7 @@ class ConteudoFormDialogState extends State<ConteudoFormDialog>{
       nomeController.text = widget.pontoAtual!.nome;
       descricaoController.text = widget.pontoAtual!.descricao;
       diferenciaisController.text = widget.pontoAtual!.diferenciais;
+      cepController.text = widget.pontoAtual!.cep;
       inclusaoController.text = widget.pontoAtual!.prazoFormatado;
     }
   }
@@ -69,6 +71,16 @@ class ConteudoFormDialogState extends State<ConteudoFormDialog>{
                 return null;
               },
             ),
+            TextFormField(
+              controller: cepController,
+              decoration: const InputDecoration(labelText: 'Cep'),
+              validator: (String? valor) {
+                if (valor == null || valor.isEmpty) {
+                  return 'Cep';
+                }
+                return null;
+              },
+            ),
             Divider(color: Colors.white,),
             Row(
               children: [
@@ -91,7 +103,8 @@ class ConteudoFormDialogState extends State<ConteudoFormDialog>{
       diferenciais: diferenciaisController.text,
       dataInclusao: DateTime.now(),
       latitude: '',
-      longitude: ''
+      longitude: '',
+      cep: cepController.text,
   );
 
 }

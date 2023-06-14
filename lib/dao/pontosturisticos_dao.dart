@@ -54,7 +54,8 @@ class PontosTuristicosDao {
         PontosTuristicos.CAMPO_DIFERENCIAIS,
         PontosTuristicos.CAMPO_INCLUSAO,
         PontosTuristicos.CAMPO_LATITUDE,
-        PontosTuristicos.CAMPO_LONGITUDE
+        PontosTuristicos.CAMPO_LONGITUDE,
+        PontosTuristicos.CAMPO_CEP,
       ],
       where: where,
       orderBy: orderBy,

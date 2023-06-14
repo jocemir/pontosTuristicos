@@ -19,6 +19,7 @@ class _FiltroPageState extends State<FiltroPage>{
   final _camposParaOrdenacao = {
     PontosTuristicos.CAMPO_ID : "Código",
     PontosTuristicos.CAMPO_DESCRICAO: "Descrição",
+    PontosTuristicos.CAMPO_CEP: "Cep",
     PontosTuristicos.CAMPO_INCLUSAO: "Inclusão"
   };
 
